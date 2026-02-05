@@ -6,11 +6,20 @@
 
 int main(int argc, char *argv[]) {
     int height, width;
-    bool piping = false;
-    if (get_terminal_size(&width, &height) != 0){
-        piping = true;
+
+    if (argc > 2 || argc == 2 && *argv[1] != '-') {
+        std::cerr << "Usage: " << argv[0] << " [-]" << std::endl;
+        return 1;
     }
 
+
+    bool piping = argc == 2;
+    if (!piping && get_terminal_size(&width, &height) != 0){
+        std::cerr << "Could not determine window size." << std::endl;
+        return 1;
+    }
+
+    std::cout << ansi::save;
 
     if (!piping) {
         std::cout

@@ -34,12 +34,22 @@ instead manually pass in the height and width with
 ./ansi-escape 42 136
 ```
 
-## Usage
+## Interactive Usage
+
 
 In the bottom, you may type in an arbitrary sequence of characters, including
 ANSI escapes. After pressing enter, the sequence (with the newline you entered
 with ENTER being removed), is drawn to the canvas above. The session will stay
 open until you type CTRL+C.
+
+## Pipe usage
+
+You can also use `ansi-escape` in a pipeline by passing "-" as an argument.
+
+```bash
+echo "hey\u263A" | ./ansi-escape -
+hey☺
+```
 
 ## Images
 
