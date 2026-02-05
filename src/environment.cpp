@@ -10,7 +10,7 @@
 #define WIN32_LEAN_AND_MEAN
 #define VC_EXTRALEAN
 #include <Windows.h>
-#elif defined(__linux__) | defined(__APPLE__)
+#elif defined(__linux__) || defined(__APPLE__)
 #include <sys/ioctl.h>
 #endif // Windows/Linux/Apple
 
@@ -23,7 +23,7 @@ int get_terminal_size(int *width, int *height) {
     *width = (int)(csbi.srWindow.Right-csbi.srWindow.Left+1);
     *height = (int)(csbi.srWindow.Bottom-csbi.srWindow.Top+1);
     return 0;
-#elif defined(__linux__) | defined(__APPLE__)
+#elif defined(__linux__) || defined(__APPLE__)
     struct winsize w;
     if (ioctl(fileno(stdout), TIOCGWINSZ, &w) != 0) {
         return 1;
