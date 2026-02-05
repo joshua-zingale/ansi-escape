@@ -8,6 +8,11 @@ example, and specify visual actions in the terminal.
 To learn more about these escape codes, I created this interactive TUI for
 typing in escape codes and seeing the immediate visual feedback.
 
+> [!WARNING]
+> The stored cursor position, as by `\e[s`, is overwritten after the input is
+> drawn. Therefore, all stored positions must be used within a single line, lest
+> they be overwritten.
+
 ## Compilation
 
 The compilation process may itself be compiled by CMake. So to compile the code,
