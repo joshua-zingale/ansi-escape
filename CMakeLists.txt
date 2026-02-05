@@ -3,10 +3,11 @@ project(ansi)
 
 SET (CMAKE_CXX_STANDARD 14)
 
-add_executable(interactive-ansi-escape
-    src/interactive-ansi-escape.cpp
+add_executable(ansi-escape
+    src/ansi-escape.cpp
+    src/environment.cpp
     src/ansi.cpp)
 
-target_include_directories(interactive-ansi-escape PRIVATE src/)
+target_include_directories(ansi-escape PRIVATE src/)
 
 

@@ -37,7 +37,7 @@
 *.out
 *.app
 
-interactive-ansi-escape
+ansi-escape
 
 
 # debug information files

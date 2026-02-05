@@ -1,0 +1,1 @@
+int get_terminal_size(int *width, int *height);

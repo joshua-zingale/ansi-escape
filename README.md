@@ -1,4 +1,4 @@
-# Interactive ANSI Escape
+# ANSI Escape
 
 [ANSI escape codes](https://en.wikipedia.org/wiki/ANSI_escape_code) are
 supported by most terminals and allow for the creation of Terminal User
@@ -22,7 +22,7 @@ cmake . && cmake --build .
 After compiling the binary, you may run it with
 
 ```bash
-./interactive-ansi-escape $LINE $COLUMN
+./ansi-escape $LINE $COLUMN
 ```
 
 on a UNIX-like operating system. `$LINE` and `$COLUMN` are the height and width
@@ -31,7 +31,7 @@ for some other reason do not have those environment variables defined, you may
 instead manually pass in the height and width with
 
 ```bash
-./interactive-ansi-escape 42 136
+./ansi-escape 42 136
 ```
 
 ## Usage
