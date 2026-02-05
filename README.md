@@ -1,4 +1,4 @@
-# Interactive Ansi Escape
+# Interactive ANSI Escape
 
 [ANSI escape codes](https://en.wikipedia.org/wiki/ANSI_escape_code) are
 supported by most terminals and allow for the creation of Terminal User
