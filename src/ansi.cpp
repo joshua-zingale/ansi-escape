@@ -4,6 +4,11 @@
 #include <cctype>
 
 namespace ansi {
+bool isoctaldigit(char c) {
+    return '0' <= c && c < '8';
+}
+
+
 std::ostream& clearScreen(std::ostream &os) {
     return os << "\x1b[2J";
 }
@@ -37,19 +42,27 @@ std::string unescape(std::string& input) {
         if (input[i] == '\\' && i + 1 < input.size()) {
             char type = input[i + 1];
             
-            if (type == 'x' || type == 'u') {
-                int max_digits = (type == 'x') ? 2 : 4;
+            if (type == 'x' || type == 'u' || type == '0') {
+                int max_digits;
+                switch (type) {
+                    case 'x': max_digits=2; break;
+                    case 'u': max_digits=4; break;
+                    case '0': max_digits=3; break;
+                }
+                
                 size_t start = i + 2;
                 size_t count = 0;
-
                 while (count < max_digits && (start + count) < input.size() && 
-                       std::isxdigit(static_cast<unsigned char>(input[start + count]))) {
+                       ((type=='x' || type=='u') && std::isxdigit(static_cast<unsigned char>(input[start + count]))
+                        || type=='0' && isoctaldigit(input[start+count]))
+                    
+                    ) {
                     count++;
                 }
 
                 if (count > 0) {
-                    std::string hexStr = input.substr(start, count);
-                    int value = std::stoi(hexStr, nullptr, 16);
+                    std::string numStr = input.substr(start, count);
+                    int value = type=='0' ? std::stoi(numStr, nullptr, 8) : std::stoi(numStr, nullptr, 16);
                     
                     if (value <= 0x7F) {
                         // 1-byte ASCII
@@ -97,5 +110,6 @@ std::string unescape(std::string& input) {
     }
     return result;
 }
+
 
 }
